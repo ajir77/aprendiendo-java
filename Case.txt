@@ -1,0 +1,17 @@
+import java.utils.Scanner;
+public class void Case
+{
+  public static void main(String args[])
+  {
+    
+    int Operacion=0, numero1 =0, numero2 = 0, parametro = 2;
+    
+    switch(Operacion)
+    {
+      case 1:
+        resultado = resultado + 1;
+        System.out.println("El resultado de la suma de " + numero1 + " + " + numero2 + " es " + resultado);
+    }
+  }
+  
+}

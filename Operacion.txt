@@ -1,0 +1,12 @@
+public class Operacion
+{
+  public static void main(String args[])
+  {
+    int operacion = 0;
+    int numero1 = 0;
+    int numero2 = 0;
+    int resultado = 0;
+    
+    
+  }
+}

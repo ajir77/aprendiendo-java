@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class Vacaciones
+{
+    Scanner in_teclado = new Scanner(System.in);
+    String nombre = "";
+    int clave = 0;
+    int antiguedad = 0;
+    
+    System.out.println("Dame el nombre del trabajador:");
+    nombre = in_teclado.nextLine();
+    
+    System.out.println("Dame la antiguedad del trabajador:");
+    antiguedad = in_teclado.nextInt();
+    
+    System.out.println("Dame la clave del trabajador:");
+    clave = in_teclado.nextInt();
+    
+    if (clave == 1)
+    {
+      if (antiguedad >= 7)
+      {
+        System.out.println(nombre + "tiene derecho a 20 dias de vacaciones");
+      }
+      else if (antiguedad >= 2)
+      {
+        System.out.println(nombre + "tiene derecho a 14 dias de vacaciones");
+      }
+      else if (antiguedad >= 1)
+      {
+        System.out.println(nombre + "tiene derecho a 7 dias de vacaciones");
+      }
+        
+    }
+    
+    
+}
