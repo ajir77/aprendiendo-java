@@ -8,6 +8,10 @@ public class Formulario extends JFrame implements ActionListener
   private JLabel lbl_autor;
   private JLabel lbl_version;
   
+  private JLabel lbl_texto;
+  private JButton btn_1, btn_2, btn_3;
+  
+  
   public Formulario()
   {
     setLayout(null);
@@ -24,6 +28,10 @@ public class Formulario extends JFrame implements ActionListener
     lbl_version = new JLabel ("Version 1.0");
     lbl_version.setBounds(20,50,200,50);
     add(lbl_version);
+
+    lbl_texto = new JLabel ("Presione un Boton...");
+    lbl_texto.setBounds(20,120,200,50);
+    add(lbl_texto);
     
     // Crear el boton de cerrar
     btn_close = new JButton("Cerrar");
@@ -31,13 +39,40 @@ public class Formulario extends JFrame implements ActionListener
     add(btn_close);
     btn_close.addActionListener(this);
     
+    btn_1 = new JButton("Opcion 1");
+    btn_1.setBounds(10,180,90,30);
+    add(btn_1);
+    btn_1.addActionListener(this);
+    
+    btn_2 = new JButton("Opcion 2");
+    btn_2.setBounds(110,180,90,30);
+    add(btn_2);
+    btn_2.addActionListener(this);
+
+    btn_3 = new JButton("Opcion 3");
+    btn_3.setBounds(210,180,90,30);
+    add(btn_3);
+    btn_3.addActionListener(this);    
+  
   }
   
   public void actionPerformed(ActionEvent e)
   {
-    if (e.getSource()==btn_close)
+    if (e.getSource() == btn_close)
     {
       System.exit(0);
+    }
+    else if (e.getSource() == btn_1)
+    {
+      lbl_texto.setText("Presionaste el boton 1");
+    }
+    else if (e.getSource() == btn_2)
+    {
+      lbl_texto.setText("Presionaste el boton 2");
+    }
+    else if (e.getSource() == btn_3)
+    {
+      lbl_texto.setText("Presionaste el boton 3");
     }
   }
   
