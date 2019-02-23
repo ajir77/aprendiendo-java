@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+
+public class FrmLogin extends JFrame implements ActionListener
+{
+  private JTextField txt_user;
+  private JLabel lbl_cocacola, lbl_2, lbl_3, lbl_4;
+  private JButton btn_ingresar;
+  
+  public FrmLogin()
+  {
+    setLayout(null);
+    setTitle("Bienvenido");
+    setContentPane().setBackGround(new Color (255,0,0));
+    setIconImage(new ImageIcon(getClass().getResource("images/icon.png")))
+    // Crear Labels
+    
+    // Crear Text
+    
+    // Crear Botones
+    btn_ingresar = new JButton("Ingresar");
+    btn_ingresar.setBounds(10,50,100,30);
+    add(btn_ingresar);
+    
+  }
+  
+  public void actionPerformed(ActionEvent e)
+  {
+    if ( e.getSource() == btn_ingresar)
+    {
+      
+    }
+  }
+  
+  public static void main(String args[])
+  {
+    FrmLogin frm_login = new FrmLogin();
+    frm_login.setBounds(0,0,300,500);
+    frm_login.setVisible(true);
+    frm_login.setResizable(false);
+    frm_login.setLocationRelativeTo(null);
+  }
+  
+}

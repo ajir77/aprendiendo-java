@@ -6,8 +6,10 @@ import java.awt.event.*;
 public class FrmMenu extends JFrame implements ActionListener
 {
   private JMenuBar    menubar;
-  private JMenu       mnu_opciones, mnu_archivo;
-  private JMenuItem   mni_rojo, mni_verde, mni_azul, mni_salir;
+  private JMenu       mnu_opciones, mnu_archivo, mnu_tamano, mnu_color;
+  private JMenuItem   mni_rojo, mni_verde, mni_azul, 
+                      mni_300x200, mni_640x480,
+                      mni_salir;
   
   public FrmMenu()
   {
@@ -24,6 +26,13 @@ public class FrmMenu extends JFrame implements ActionListener
     mnu_opciones = new JMenu("Opciones");
     menubar.add(mnu_opciones);
     
+    mnu_tamano = new JMenu("Tamano de la ventana");
+    mnu_opciones.add(mnu_tamano);
+    
+    mnu_color = new JMenu("Color de fondo");
+    mnu_opciones.add(mnu_color);
+
+    
     // Crear Items de menu 
     mni_salir = new JMenuItem("Salir");
     mni_salir.addActionListener(this);
@@ -31,37 +40,52 @@ public class FrmMenu extends JFrame implements ActionListener
 
     mni_rojo = new JMenuItem("Rojo");
     mni_rojo.addActionListener(this);
-    mnu_opciones.add(mni_rojo);
+    mnu_color.add(mni_rojo);
     
     mni_verde = new JMenuItem("Verde");
     mni_verde.addActionListener(this);
-    mnu_opciones.add(mni_verde);
+    mnu_color.add(mni_verde);
     
     mni_azul = new JMenuItem("Azul");
     mni_azul.addActionListener(this);
-    mnu_opciones.add(mni_azul);
+    mnu_color.add(mni_azul);
     
-  }
+    mni_300x200 = new JMenuItem("300 * 200");
+    mni_300x200.addActionListener(this);
+    mnu_tamano.add(mni_300x200);
+
+    mni_640x480 = new JMenuItem("640 * 480");
+    mni_640x480.addActionListener(this);
+    mnu_tamano.add(mni_640x480);
+    
+}
   
   public void actionPerformed(ActionEvent e)
   {
-    Container pnl_fondo = this.getContentPane();
-    
-    if (e.getSource() == mni_rojo)
-    {
-      pnl_fondo.setBackground(new Color(255,0,0));
-    }
-    if (e.getSource() == mni_verde)
-    {
-      pnl_fondo.setBackground(new Color(0,255,0));
-    }
-    if (e.getSource() == mni_azul)
-    {
-      pnl_fondo.setBackground(new Color(0,0,255));
-    }
+   
     if (e.getSource() == mni_salir)
     {
       System.exit(0);
+    }
+    if (e.getSource() == mni_300x200)
+    {
+      setSize(300, 200);
+    }
+    if (e.getSource() == mni_640x480)
+    {
+      setSize(640, 480);
+    }
+    if (e.getSource() == mni_rojo)
+    {
+      getContentPane().setBackground(new Color(255,0,0));
+    }
+    if (e.getSource() == mni_verde)
+    {
+      getContentPane().setBackground(new Color(0,255,0));
+    }
+    if (e.getSource() == mni_azul)
+    {
+      getContentPane().setBackground(new Color(0,0,255));
     }
   }
   
