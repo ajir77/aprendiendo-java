@@ -51,6 +51,7 @@ public class Textos extends JFrame implements ActionListener
     frm_ppal.setVisible(true);
     frm_ppal.setResizable(false);
     frm_ppal.setLocationRelativeTo(null);
+    // setTitle("Sumar");
   }
   
 }
