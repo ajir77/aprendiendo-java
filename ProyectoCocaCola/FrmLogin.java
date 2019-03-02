@@ -7,6 +7,7 @@ public class FrmLogin extends JFrame implements ActionListener
   private JTextField txt_user;
   private JLabel lbl_cocacola, lbl_sistema, lbl_nombre, lbl_copyrigth;
   private JButton btn_ingresar;
+  public static String Usuario = "";
   
   public FrmLogin()
   {
@@ -15,12 +16,13 @@ public class FrmLogin extends JFrame implements ActionListener
     getContentPane().setBackground(new Color (255,0,0));
     setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
     
-    // Crear Labels
-    ImageIcon img_logo = new ImageIcon("images/logo-coca.png");
+    // Logo
+	ImageIcon img_logo = new ImageIcon("images/logo-coca.png");
     lbl_cocacola = new JLabel(img_logo);
     lbl_cocacola.setBounds(25,15,300,150);
     add(lbl_cocacola);
     
+    // Crear Labels
     lbl_sistema = new JLabel("Sistema de Control Vacacional");
     lbl_sistema.setBounds(35,135,300,30);
     lbl_sistema.setFont(new Font("Andale Mono", 3, 18));
@@ -62,7 +64,21 @@ public class FrmLogin extends JFrame implements ActionListener
   {
     if ( e.getSource() == btn_ingresar)
     {
-      
+		Usuario = txt_user.getText().trim();
+		if ( Usuario.equals("") )
+		{
+		  // enviar mensaje al usuario para que ingrese su nombre
+		  JOptionPane.showMessageDialog(null, "Debes ingresar tu nombre!");
+		}
+		else
+		{
+			FrmLicencia frm_licencia = new FrmLicencia();
+			frm_licencia.setBounds(0,0,630,400);
+			frm_licencia.setVisible(true);
+			frm_licencia.setResizable(false);
+			frm_licencia.setLocationRelativeTo(null);
+			this.setVisible(false);
+		}
     }
   }
   
