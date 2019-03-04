@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Ajir77
+Main-Class: FrmLogin
+X-COMMENT: Curso de aprender Java

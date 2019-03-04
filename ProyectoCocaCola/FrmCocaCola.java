@@ -19,16 +19,21 @@ public class FrmCocaCola extends JFrame implements ActionListener
 	JComboBox	cbo_dpto, cbo_antiguedad;
 	JScrollPane	pnl_resultado;
 	JTextArea	txt_resultado;
-	
+	String      nombre_admin = "";
 	
 	public FrmCocaCola()
 	{
 		setLayout(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		// Titulo e Icono
 		setTitle("Coca-Cola Calculo Vacaciones");
 		getContentPane().setBackground(new Color(255, 0, 0));
 		setIconImage(new ImageIcon(getClass().getResource("images/icon.png")).getImage());
+		
+		FrmLogin frm_login = new FrmLogin();
+		nombre_admin = frm_login.Usuario;
+		
 		
 		// Crear Menu
 		mnb_menu = new JMenuBar();
@@ -115,7 +120,7 @@ public class FrmCocaCola extends JFrame implements ActionListener
 		add(lbl_logo);
 		
 		// Etiquetas
-		lbl_bienvenido = new JLabel("Bienvenido");
+		lbl_bienvenido = new JLabel("Bienvenido " + nombre_admin);
 		lbl_bienvenido.setBounds(280, 30, 300, 50);
 		lbl_bienvenido.setFont(new Font("Andale Mono", 1, 32 ));
 		lbl_bienvenido.setForeground(new Color (255, 255, 255));		
@@ -235,23 +240,127 @@ public class FrmCocaCola extends JFrame implements ActionListener
 	{
 		if (e.getSource() == mni_calculo)
 		{
-			System.exit(0);
+			String nombre_trabajador  	= txt_nombre.getText();
+			String AP					= txt_apellidop.getText();
+			String AM					= txt_apellidom.getText();
+			String Departamento			= cbo_dpto.getSelectedItem().toString();
+			String Antiguedad			= cbo_antiguedad.getSelectedItem().toString();
+			
+			if (nombre_trabajador.equals("") || 
+				AP.equals("") || 
+				AM.equals("") || 
+				Departamento.equals("") || 
+				Antiguedad.equals("") 
+				)
+			{
+				JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos!");		
+			}
+			else
+			{
+				if (Departamento.equals("Atencion al Cliente"))
+				{
+					if (Antiguedad.equals("1 Anio de Servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + " " + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 6 dias de vacaciones" +
+											  "\n "
+												);
+					}
+					if (Antiguedad.equals("2 a 6 anios de servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 14 dias de vacaciones" +
+											  "\n "
+												);
+					}
+					if (Antiguedad.equals("7 anios o mas de servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 20 dias de vacaciones" +
+											  "\n "
+												);
+					}
+				}
+				else if (Departamento.equals("Departamento de Logistica"))
+				{
+					if (Antiguedad.equals("1 Anio de Servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 7 dias de vacaciones" +
+											  "\n "
+												);
+					}
+					if (Antiguedad.equals("2 a 6 anios de servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 15 dias de vacaciones" +
+											  "\n "
+												);
+					}
+					if (Antiguedad.equals("7 anios o mas de servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 22 dias de vacaciones" +
+											  "\n "
+												);
+					}
+				}
+				else if (Departamento.equals("Departamento de Gerencia"))
+				{
+					if (Antiguedad.equals("1 Anio de Servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 10 dias de vacaciones" +
+											  "\n "
+												);
+					}
+					if (Antiguedad.equals("2 a 6 anios de servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 20 dias de vacaciones" +
+											  "\n "
+												);
+					}
+					if (Antiguedad.equals("7 anios o mas de servicio"))
+					{
+						txt_resultado.setText("\n El trabajador " + nombre_trabajador + " " + AP + "" + AM +
+											  "\n quien labora en " + Departamento + " con " + Antiguedad +
+											  "\n recibe 30 dias de vacaciones" +
+											  "\n "
+												);
+					}
+				}
+			}
 		}
 		if (e.getSource() == mni_rojo)
 		{
-			System.exit(0);
+			getContentPane().setBackground(new Color(255, 0, 0));
 		}
 		if (e.getSource() == mni_negro)
 		{
-			System.exit(0);
+			getContentPane().setBackground(new Color(0, 0, 0));
 		}
 		if (e.getSource() == mni_morado)
 		{
-			System.exit(0);
+			getContentPane().setBackground(new Color(51, 0, 51));
 		}
 		if (e.getSource() == mni_nuevo)
 		{
-			System.exit(0);
+			txt_nombre.setText("");
+			txt_apellidop.setText("");
+			txt_apellidom.setText("");
+			cbo_dpto.setSelectedIndex(0);
+			cbo_antiguedad.setSelectedIndex(0);
+			txt_resultado.setText("\n   Aqui aparece el resultado del calculo de las vacaciones");
+			
 		}
 		if (e.getSource() == mni_salir)
 		{
@@ -259,7 +368,7 @@ public class FrmCocaCola extends JFrame implements ActionListener
 		}
 		if (e.getSource() == mni_creador)
 		{
-			System.exit(0);
+			JOptionPane.showMessageDialog(null, "Desarrollado por ajir77\n Aprendiendo Java");
 		}
 	}
 	

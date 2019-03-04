@@ -14,14 +14,22 @@ public class FrmLicencia extends JFrame implements ActionListener, ChangeListene
   JCheckBox   chk_aceptar;
   JButton     btn_si_acepto,
               btn_no_acepto;
+			  
+  String nombre = "";
   
   public FrmLicencia()
   {
     setLayout(null);
+	setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
     // Titulo e Icono
     setTitle("Licencia de Uso");
     setIconImage(new ImageIcon( getClass().getResource("images/icon.png")).getImage());
     
+	FrmLogin frm_login;
+	frm_login = new FrmLogin();
+	nombre = frm_login.Usuario;
+	
     // Logo
 	ImageIcon img_logo = new ImageIcon("images/coca-cola.png");
 	lbl_cocacola = new JLabel(img_logo);
@@ -59,7 +67,7 @@ public class FrmLicencia extends JFrame implements ActionListener, ChangeListene
 	
 	
     // Checkbox
-	chk_aceptar = new JCheckBox("Yo Acepto");
+	chk_aceptar = new JCheckBox("Yo " + nombre + " Acepto");
 	chk_aceptar.setBounds(10,250,300,30);
 	//chk_aceptar.setFont(new Font("Andale Mono", 3, 18));
     chk_aceptar.addChangeListener(this);
@@ -82,8 +90,6 @@ public class FrmLicencia extends JFrame implements ActionListener, ChangeListene
 	btn_no_acepto.setEnabled(true);
     add(btn_no_acepto);
     
-	
-	
   }
   
   public void stateChanged(ChangeEvent e)
@@ -96,11 +102,21 @@ public class FrmLicencia extends JFrame implements ActionListener, ChangeListene
   {
     if ( e.getSource() == btn_no_acepto)
     {
-      System.exit(0);
+		FrmLogin frm_login = new FrmLogin();
+		frm_login.setBounds(0,0,350,450);
+		frm_login.setVisible(true);
+		frm_login.setResizable(false);
+		frm_login.setLocationRelativeTo(null);
+		this.setVisible(false);
     }
     if ( e.getSource() == btn_si_acepto)
     {
-      //System.exit(0);
+		FrmCocaCola frm_cocacola = new FrmCocaCola();
+		frm_cocacola.setBounds(0,0,640,535);
+		frm_cocacola.setVisible(true);
+		frm_cocacola.setResizable(false);
+		frm_cocacola.setLocationRelativeTo(null);
+		this.setVisible(false);
     }
 	
   }
@@ -111,7 +127,7 @@ public class FrmLicencia extends JFrame implements ActionListener, ChangeListene
     FrmLicencia frm_licencia = new FrmLicencia();
     frm_licencia.setBounds(0,0,630,400);
 	frm_licencia.setVisible(true);
-    //frm_licencia.setResizable(false);
+    frm_licencia.setResizable(false);
 	frm_licencia.setLocationRelativeTo(null);
 	
   }
