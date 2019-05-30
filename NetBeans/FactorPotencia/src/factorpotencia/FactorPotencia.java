@@ -313,4 +313,102 @@ public class FactorPotencia {
         }
     }
 
+    
+    public void analisis2(int i_contador_BFP
+                         ,double i_valor_FP
+                         ,char i_Primer_Incumplmiento_Notificado
+                         ,double i_Importe_Energia
+                         ,double i_valor_acumulado
+                         ,char i_Reincidencia_Notificado
+    )
+    {
+        if (i_valor_FP > cero)
+        {
+            Calculo_Mes = calcular_importe_bfp(i_Importe_Energia, i_valor_FP);
+            Contador_BFP = i_contador_BFP; 
+
+            if (i_valor_FP < porcentaje_cumplimiento) /* No cumple FP */
+            {
+                if (i_contador_BFP == 0)
+                {
+                        FL_Notificar_Primer_Incumplimiento = verdadero;
+                        Contador_BFP = 1;
+                }
+                else if (i_contador_BFP < 4)
+                {
+                    if (i_Primer_Incumplmiento_Notificado == verdadero)
+                    {
+                        /*  
+                         *  Acumular Importe a Cobrar para Periodo 5
+                        */
+                        Penalizacion_Acumulada_BFP = i_valor_acumulado + Calculo_Mes;
+                    }            
+                    Contador_BFP ++;
+                }
+                else if (i_contador_BFP == 5)
+                {
+                    Penalizacion_Acumulada_BFP = i_valor_acumulado + Calculo_Mes;
+                    System.out.println("-------------------------------------");
+                    System.out.print("SE COBRA AL CLIENTE = ");
+                    System.out.println(Penalizacion_Acumulada_BFP);
+                    System.out.println("-------------------------------------");
+                    Penalizacion_Acumulada_BFP = 0.0;
+                    FL_Notificado_Reincidencia = verdadero;
+
+                    Contador_Reinicio = 0; /* Inicializar el contador para re-inicio del proceso */
+                    Contador_BFP ++;                    
+                }
+                else
+                {
+                    Contador_Reinicio = 0;
+                    Contador_BFP ++;
+                    if (FL_Notificado_Reincidencia == verdadero)
+                    {
+                        System.out.println("-------------------------------------");
+                        System.out.print("SE COBRA AL CLIENTE = ");
+                        System.out.println(Calculo_Mes);
+                        System.out.println("-------------------------------------");
+                    }
+                    else
+                    {
+                        /*
+                         * Esperar a que se notifique la reincidencia
+                         */
+                        System.out.println("-------------------------------------");
+                        System.out.println("Esperar que se notifique Reincidencia! ");
+                        System.out.println("-------------------------------------");
+                        FL_Notificar_Reincidencia = verdadero;
+                    }                
+                }
+            }
+            else /* Cumple con FP */
+            {
+                if (i_contador_BFP>0)
+                {
+                    Contador_BFP ++; 
+                    if (i_contador_BFP==5)
+                    {
+                        System.out.println("-------------------------------------");
+                        System.out.println("SIN COBRO AL CLIENTE ");
+                        System.out.println("-------------------------------------");
+                        Penalizacion_Acumulada_BFP = 0.0;
+                        Contador_Reinicio = 0; /* Inicializar el contador para re-inicio del proceso */
+                    }
+                    else
+                    {
+                        Contador_Reinicio ++;
+                        if (Contador_Reinicio>=6)
+                        {
+                            /*
+                             * Finaliza todo el proceso y debe volver a empezar
+                            */
+                            inicializar_proceso();                        
+                        }
+                    }
+                }                    
+            }        
+        }
+                
+    }
+    
 }
